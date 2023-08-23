@@ -6,11 +6,19 @@ import java.util.HashMap;
 import org.json.*;
 
 /**
+ * Levanta servio WEB el cual corre por puerto 35000
  *
  * @author Yeison Barreto
  */
 public class HttpServer {
 
+    /**
+     * *
+     * Metodo principal
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
         try {
@@ -49,13 +57,12 @@ public class HttpServer {
             }
             if (!title.equals("")) {
                 String response = APIConnection.solicitTitle(title, "https://www.omdbapi.com/?t=" + title + "&apikey=f33b484c");
-                outputLine ="HTTP/1.1 200 OK\r\n"
+                outputLine = "HTTP/1.1 200 OK\r\n"
                         + "Content-Type: text/html\r\n"
                         + "\r\n"
                         + "<br>"
-                        + "<table border=\" 1 \"> \n " + doTable(response)+
-
-                        "    </table>";
+                        + "<table border=\" 1 \"> \n " + doTable(response)
+                        + "    </table>";
             } else {
                 outputLine = "HTTP/1.1 200 OK \r\n"
                         + "Content-Type: text/html \r\n"
@@ -70,20 +77,24 @@ public class HttpServer {
         }
         serverSocket.close();
     }
-    
-     private static String doTable(String response){
-        HashMap<String,String> dict = new HashMap<String, String>();
+
+    /***
+     * Contenido en tabla de un String
+     * @param response
+     * @return 
+     */
+    private static String doTable(String response) {
+        HashMap<String, String> dict = new HashMap<String, String>();
         JSONArray jsonArray = new JSONArray(response);
-        for (int i=0; i<jsonArray.length();i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
-            for (String key: object.keySet()) {
+            for (String key : object.keySet()) {
                 dict.put(key.toString(), object.get(key).toString());
             }
-            //System.out.println(i+" "+object.toString());
         }
 
         String table = "<tr> \n";
-        for (String keys: dict.keySet()){
+        for (String keys : dict.keySet()) {
             String value = dict.get(keys);
             table += "<td>" + keys + "</td>\n";
             table += "<td>" + value + "</td>\n";
@@ -92,6 +103,12 @@ public class HttpServer {
         return table;
     }
 
+    /**
+     * *
+     * Entrega index principal
+     *
+     * @return
+     */
     private static String index() {
         return "<!DOCTYPE html>\n"
                 + "<html>\n"

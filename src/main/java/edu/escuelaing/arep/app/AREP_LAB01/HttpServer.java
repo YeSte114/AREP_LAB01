@@ -4,6 +4,9 @@ import java.net.*;
 import java.io.*;
 import java.util.HashMap;
 import org.json.*;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * Levanta servio WEB el cual corre por puerto 35000
@@ -61,7 +64,7 @@ public class HttpServer {
                         + "Content-Type: text/html\r\n"
                         + "\r\n"
                         + "<br>"
-                        + "<table border=\" 1 \"> \n " + doTable(response)
+                        + "<table border=\" 1 \"> \n " + createTable(response)
                         + "    </table>";
             } else {
                 outputLine = "HTTP/1.1 200 OK \r\n"
@@ -78,28 +81,35 @@ public class HttpServer {
         serverSocket.close();
     }
 
-    /***
+    /**
+     * *
      * Contenido en tabla de un String
+     *
      * @param response
-     * @return 
+     * @return
      */
-    private static String doTable(String response) {
-        HashMap<String, String> dict = new HashMap<String, String>();
+    public static String createTable(String response) {
+        Map<String, String> dict = new HashMap<>();
         JSONArray jsonArray = new JSONArray(response);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
             for (String key : object.keySet()) {
-                dict.put(key.toString(), object.get(key).toString());
+                dict.put(key, object.get(key).toString());
             }
         }
 
-        String table = "<tr> \n";
-        for (String keys : dict.keySet()) {
-            String value = dict.get(keys);
-            table += "<td>" + keys + "</td>\n";
-            table += "<td>" + value + "</td>\n";
-            table += "<tr> \n";
+        List<String> keys = new ArrayList<>(dict.keySet());
+        List<String> values = new ArrayList<>(dict.values());
+
+        String table = "<table>\n";
+        for (int i = 0; i < keys.size(); i++) {
+            table += "<tr>\n";
+            table += "<td>" + keys.get(i) + "</td>\n";
+            table += "<td>" + values.get(i) + "</td>\n";
+            table += "<tr>\n";
         }
+        table += "</table>\n";
+
         return table;
     }
 
@@ -113,15 +123,16 @@ public class HttpServer {
         return "<!DOCTYPE html>\n"
                 + "<html>\n"
                 + "<head>\n"
-                + "    <title>Buscador de peliculas</title>\n"
+                + "    <title>Info Peliculas Cine</title>\n"
                 + "    <meta charset=\"UTF-8\">\n"
                 + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
                 + "</head>\n"
                 + "<body>\n"
-                + "<h1>Buscar una pelicula</h1>\n"
+                + "<font size=6 face=\"verdana\">Consultar  informacion de peliculas de cine</font>\n"
+                + "\n"
                 + "<form action=\"/hello\">\n"
-                + "    <label for=\"name\">Titulo de la pelicula a buscar:</label><br>\n"
-                + "    <input type=\"text\" id=\"name\" name=\"name\" value=\"The Avengers\"><br><br>\n"
+                + "    <label for=\"name\">Titulo de pelicula:</label><br>\n"
+                + "    <input type=\"text\" id=\"name\" name=\"name\" value=\"Guardians of the galaxy\"><br><br>\n"
                 + "    <input type=\"button\" value=\"Submit\" onclick=\"loadGetMsg()\">\n"
                 + "</form>\n"
                 + "<div id=\"getrespmsg\"></div>\n"

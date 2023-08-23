@@ -3,19 +3,25 @@ package edu.escuelaing.arep.app.AREP_LAB01;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- *
+ * Clase que se encarga de hacer consultas de APIs externas.
  * @author Yeison Barreto
  */
 public class APIConnection {
 
     private static final String USER_AGENT = "Mozilla/5.0";
     
-    public static String requestTitle(String title, String URL) throws IOException {
+    /***
+     * Realiza consulta en API externa y toma JSON para colocarlo en formato String.
+     * @param title Titulo de la pelicula a consultar en API externa
+     * @param URL Url a buscar en el API externo
+     * @return Retorna descripcion de pelicula cosultada eb formato JSON interpretado como String
+     * @throws IOException Exception
+     */
+    public static String solicitTitle(String title, String URL) throws IOException {
         
         Cache cache = Cache.getInstance();
         if (cache.isOnCache(title)){
@@ -52,5 +58,4 @@ public class APIConnection {
         System.out.println("GET DONE");
         return "Failed";
     }
-
 }

@@ -48,7 +48,7 @@ public class HttpServer {
                 }
             }
             if (!title.equals("")) {
-                String response = APIConnection.requestTitle(title, "https://www.omdbapi.com/?t=" + title + "&apikey=f33b484c");
+                String response = APIConnection.solicitTitle(title, "https://www.omdbapi.com/?t=" + title + "&apikey=f33b484c");
                 outputLine ="HTTP/1.1 200 OK\r\n"
                         + "Content-Type: text/html\r\n"
                         + "\r\n"

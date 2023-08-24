@@ -19,8 +19,7 @@ mvn --version
 ```
 ### Instalación
 
-Habilitar su IDE para correr el programa con maven, en este caso se usa NetBeans:
-![](.README_Images/2023-08 190340.png)
+Habilitar su IDE para correr el programa con maven, en este caso se usa NetBeans.
 
 y darler run a la clase main de la clase HttpServer. Por otro lado tambien puede corre el proyecto con los siguientes comandos
 

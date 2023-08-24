@@ -82,3 +82,19 @@ Para correr los test ubiquese en la carpeta principal de repositorio y corra el 
 ```
 mvn test
 ```
+## Explicaciones técnicas
+La aplicación se basa en una arquitectura de API REST, que proporciona una interfaz uniforme para la comunicación con el API externo. Para lograr la extensibilidad, se utiliza el patrón de fachada. Este patrón proporciona una interfaz única para acceder a diferentes implementaciones de la API externa. Para cambiar la dirección de la URL de la API externa, simplemente se debe modificar el atributo url de la clase APIConnection.
+
+- La modularización se logra aplicando los principios de única responsabilidad y separación de preocupaciones. Cada clase implementa solo una responsabilidad, lo que facilita la extensión del código.
+
+- Patrones utilizados
+
+  - Fachada: El patrón de fachada proporciona una interfaz única para acceder a diferentes implementaciones de la API externa. Esto facilita la extensibilidad y el mantenimiento del código.
+  - Singleton: El patrón de singleton garantiza que solo exista una instancia de un objeto dado. Esto es importante en el caso del caché, ya que se debe garantizar que no haya conflictos en el acceso a los datos.
+- Extensibilidad
+
+  Para cambiar la dirección de la URL de la API externa, simplemente se debe modificar el atributo url de la clase APIConnection. Esto se puede hacer de forma programática o modificando el archivo de configuración de la aplicación.
+
+- Modularización
+
+  Todas las clases implementan métodos que cumplen el principio de única responsabilidad. Esto significa que cada clase solo tiene una responsabilidad, lo que facilita la extensión del código. Por ejemplo, la clase APIConnection solo se encarga de conectar con la API externa. La clase HttpServer solo se encarga de procesar los datos de la API externa y formatearlos en una tabla.

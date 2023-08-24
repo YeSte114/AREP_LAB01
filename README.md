@@ -51,7 +51,7 @@ http://localhost:35000
 
 ### DESCRIPCIÓN  DE LA ARQUITECTURA:
 
-![](.README_Images/2023-08 191557.png)
+![](.README_Images/estructura.png)
 
 ##### Requerimientos:
 

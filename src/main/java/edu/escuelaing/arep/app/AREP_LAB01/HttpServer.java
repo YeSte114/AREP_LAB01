@@ -123,7 +123,7 @@ public class HttpServer {
         return "<!DOCTYPE html>\n"
                 + "<html>\n"
                 + "<head>\n"
-                + "    <title>Info Peliculas Cine</title>\n"
+                + "    <title>Search</title>\n"
                 + "    <meta charset=\"UTF-8\">\n"
                 + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
                 + "</head>\n"

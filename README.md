@@ -39,7 +39,6 @@ http://localhost:35000
 
 ## Construcción
 
-* [Spark](https://sparkjava.com/documentation#views-and-templates) - Framework API
 * [Maven](https://maven.apache.org/) - Manejo de dependencias
 * [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript) - Statics files (frontend)
 

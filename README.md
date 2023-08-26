@@ -11,7 +11,7 @@ Para descargar el repositorio y verlo local, utiliza el siguiente código:
   cd AREP_LAB01
 ```
 ### Prerequisitos
-Es necesario tener Java 8 y Maven instalados. Compruebe con los siguientes comandos:
+Es necesario tener Java (recomendable mayor a 17), el proyecto tiene Java 17, si manejas otro puedes cambiarlo en las propiedades del pom.xml y Maven instalados. Compruebe con los siguientes comandos:
 
 ```
 java --version
